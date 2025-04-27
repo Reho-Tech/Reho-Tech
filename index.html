@@ -40,16 +40,26 @@
       padding: 15px;
       margin-top: 20px;
     }
-    button {
-      padding: 10px 20px;
-      background-color: #0077cc;
-      color: white;
-      border: none;
-      cursor: pointer;
-      text-transform: uppercase;
+    .news-item, .tutorial-item {
+      background: #fff;
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 5px;
     }
-    button:hover {
-      background-color: #005fa3;
+
+    .news-item h3, .tutorial-item h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .read-more {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    .read-more:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -63,9 +73,8 @@
 <nav>
   <a href="#about">About</a>
   <a href="#services">Services</a>
-  <a href="#contact">Contact</a>
   <a href="#news">News & Tutorials</a>
-  <a href="#files">Files</a>
+  <a href="#contact">Contact</a>
 </nav>
 
 <section id="about">
@@ -83,32 +92,38 @@
   </ul>
 </section>
 
-<!-- News & Tutorials Section -->
 <section id="news">
   <h2>Latest News & Tutorials</h2>
-  <div>
-    <h3><a href="news/tutorial1.html">Tutorial 1: How to Get Started with Reho Tech</a></h3>
-    <p>Learn the basics of using Reho Tech in this tutorial...</p>
-  </div>
-  <div>
-    <h3><a href="news/news1.html">News: New Features Coming Soon!</a></h3>
-    <p>We’re excited to announce some new features...</p>
-  </div>
-</section>
 
-<!-- Files Section -->
-<section id="files">
-  <h2>Download Files</h2>
-  <div>
-    <a href="files/tutorial.pdf" download>
-      <button>Download Tutorial PDF</button>
-    </a>
+  <!-- News Item 1 -->
+  <div class="news-item">
+    <h3>New Features Coming Soon!</h3>
+    <p>We’re excited to announce some new features that will be added soon. Stay tuned for more updates!</p>
+    <a href="news/news1.html" class="read-more">Read More</a>
   </div>
-  <div>
-    <a href="files/guide.pdf" download>
-      <button>Download User Guide</button>
-    </a>
+
+  <!-- News Item 2 -->
+  <div class="news-item">
+    <h3>Reho Tech Now Offers 24/7 Support!</h3>
+    <p>We are now available to assist you anytime with our 24/7 tech support service. Get help whenever you need it!</p>
+    <a href="news/news2.html" class="read-more">Read More</a>
   </div>
+  
+  <!-- Tutorial Item 1 -->
+  <div class="tutorial-item">
+    <h3>How to Get Started with Reho Tech</h3>
+    <p>New to Reho Tech? This tutorial will guide you through the basics of setting up your account and using our services.</p>
+    <a href="tutorials/tutorial1.html" class="read-more">Read More</a>
+  </div>
+
+  <!-- Tutorial Item 2 -->
+  <div class="tutorial-item">
+    <h3>Advanced Features of Reho Tech</h3>
+    <p>Discover some advanced features that will enhance your experience with Reho Tech and help you get the most out of our platform.</p>
+    <a href="tutorials/tutorial2.html" class="read-more">Read More</a>
+  </div>
+  
+  <!-- Add more news/tutorials here -->
 </section>
 
 <section id="contact">
