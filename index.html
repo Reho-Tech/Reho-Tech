@@ -19,16 +19,21 @@
       text-align: center;
     }
     nav {
-      padding: 10px;
+      padding: 15px;
       text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 20px; /* Adds space between tabs */
     }
     nav a {
       color: white;
-      margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
-      padding: 10px;
-      border-radius: 5px;
+      padding: 12px 20px;
+      border-radius: 25px; /* Elegant rounded corners */
+      background: #0077cc;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adding shadow for a 3D effect */
     }
     nav a#home {
       background: #ffcc00; /* Home Tab Color */
@@ -49,8 +54,8 @@
       background: #ff6347; /* Contact Tab Color */
     }
     nav a:hover {
-      opacity: 0.8;
-      text-decoration: underline;
+      background-color: #333; /* Darker background on hover */
+      box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
     }
     section {
       padding: 40px;
