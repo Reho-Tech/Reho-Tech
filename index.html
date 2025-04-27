@@ -182,11 +182,6 @@
     <p>We’re excited to announce some new features that will be added soon. Stay tuned for more updates!</p>
     <a href="news/news1.html" class="read-more">Read More</a>
   </div>
-  <div class="news-item">
-    <h3>Reho Tech Now Offers 24/7 Support!</h3>
-    <p>We are now available to assist you anytime with our 24/7 tech support service. Get help whenever you need it!</p>
-    <a href="news/news2.html" class="read-more">Read More</a>
-  </div>
 </section>
 
 <section id="files">
@@ -209,13 +204,25 @@
 
 <script>
   function showTab(tabId) {
+    // Get all sections
     const sections = document.querySelectorAll('section');
+    
+    // Hide all sections
     sections.forEach(section => {
       section.classList.remove('active');
     });
+
+    // Show the clicked section
     const activeTab = document.getElementById(tabId);
-    activeTab.classList.add('active');
+    if (activeTab) {
+      activeTab.classList.add('active');
+    }
   }
+
+  // Ensure Home section is visible on page load
+  window.onload = function() {
+    showTab('home');
+  };
 </script>
 
 </body>
