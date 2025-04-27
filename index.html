@@ -1,127 +1,198 @@
-html lang="en">
+<?php
+// Set directory for uploads
+$directory = "uploads";
+$uploadOk = 1;
+$message = "";
+
+// Handle file upload
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES["fileToUpload"])) {
+    $target_file = $directory . "/" . basename($_FILES["fileToUpload"]["name"]);
+    
+    // Create uploads folder if it doesn't exist
+    if (!file_exists($directory)) {
+        mkdir($directory, 0777, true);
+    }
+
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        $message = "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+
+    // Limit file size to 10MB
+    if ($_FILES["fileToUpload"]["size"] > 10000000) {
+        $message = "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+
+    // Upload file if all checks are okay
+    if ($uploadOk == 1) {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            $message = "The file ". htmlspecialchars(basename($_FILES["fileToUpload"]["name"])). " has been uploaded.";
+        } else {
+            $message = "Sorry, there was an error uploading your file.";
+        }
+    }
+}
+
+// Handle file deletion
+if (isset($_GET['delete'])) {
+    $file_to_delete = $_GET['delete'];
+    $file_path = $directory . "/" . $file_to_delete;
+
+    if (file_exists($file_path)) {
+        unlink($file_path);
+        $message = "File deleted successfully.";
+    } else {
+        $message = "File not found.";
+    }
+}
+
+// Get list of uploaded files
+$files = array_diff(scandir($directory), array('..', '.'));
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Reho Tech - Professional Tech Support</title>
+  <title>Reho Tech - File Upload & Management</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-      color: #333;
-    }
-    header {
-      background: #0077cc;
-      color: white;
+      background: #f4f4f4;
       padding: 20px;
       text-align: center;
     }
-    nav {
-      background: #005fa3;
+
+    .container {
+      width: 80%;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .upload-container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-bottom: 30px;
+      width: 100%;
+    }
+
+    input[type="file"] {
+      margin: 20px 0;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background: #45a049;
+    }
+
+    .file-table {
+      width: 100%;
+      margin: auto;
+      text-align: center;
+      border-collapse: collapse;
+    }
+
+    .file-table th, .file-table td {
       padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    section {
-      padding: 40px;
-      text-align: center;
-    }
-    footer {
-      background: #0077cc;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 20px;
-    }
-    .news-item, .tutorial-item {
-      background: #fff;
       border: 1px solid #ddd;
+    }
+
+    .file-table th {
+      background-color: #f2f2f2;
+    }
+
+    .file-table a {
+      text-decoration: none;
+      color: #4CAF50;
+    }
+
+    .message {
+      background-color: #f2f2f2;
+      padding: 10px;
       margin-bottom: 20px;
-      padding: 15px;
       border-radius: 5px;
     }
 
-    .news-item h3, .tutorial-item h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
+    .footer {
+      margin-top: 30px;
+      font-size: 0.9em;
+      text-align: center;
+      color: #555;
     }
 
-    .read-more {
-      color: #0077cc;
-      text-decoration: none;
-    }
-
-    .read-more:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Reho Tech</h1>
-  <p>Fast, Reliable, and Professional Tech Support</p>
-</header>
+<div class="container">
+    <h1>Reho Tech - File Upload & Management</h1>
 
-<nav>
-  <a href="#about">About</a>
-  <a href="#services">Services</a>
-  <a href="#news">News & Tutorials</a>
-  <a href="#contact">Contact</a>
-</nav>
+    <!-- Show message if any -->
+    <?php if ($message): ?>
+      <div class="message"><?php echo $message; ?></div>
+    <?php endif; ?>
 
-<section id="about">
-  <h2>About Us</h2>
-  <p>At Reho Tech, we are passionate about providing professional and fast tech support. Whether you need help with your devices, software, websites, or online business, we're here to assist you!</p>
-</section>
+    <!-- Upload Form -->
+    <div class="upload-container">
+        <h2>Upload a File</h2>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <input type="file" name="fileToUpload" required><br>
+            <input type="submit" value="Upload File">
+        </form>
+    </div>
 
-<section id="services">
-  <h2>Our Services</h2>
-  <ul style="list-style: none; padding: 0;">
-    <li>• Software Installation and Support</li>
-    <li>• Website Help and Maintenance</li>
-    <li>• Digital Marketing Support</li>
-    <li>• Computer Troubleshooting</li>
-  </ul>
-</section>
+    <!-- News & Tutorials Section -->
+    <div class="news-tutorials">
+        <h2>News & Tutorials</h2>
+        <p>Stay updated with the latest news and tutorials:</p>
+        <ul>
+            <li><a href="https://www.example.com/news/1" target="_blank">Latest Tutorial 1</a></li>
+            <li><a href="https://www.example.com/news/2" target="_blank">Latest News 1</a></li>
+            <li><a href="https://www.example.com/tutorials/3" target="_blank">Latest Tutorial 2</a></li>
+        </ul>
+    </div>
 
-<section id="news">
-  <h2>Latest News & Tutorials</h2>
+    <!-- File Management Table -->
+    <h2>Uploaded Files</h2>
+    <?php if (count($files) > 0): ?>
+      <table class="file-table">
+        <tr><th>File Name</th><th>Action</th></tr>
+        <?php foreach ($files as $file): ?>
+          <tr>
+            <td><?php echo $file; ?></td>
+            <td>
+              <a href="<?php echo $directory . "/" . $file; ?>" download>Download</a> | 
+              <a href="?delete=<?php echo $file; ?>" onclick="return confirm('Are you sure you want to delete this file?')">Delete</a>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </table>
+    <?php else: ?>
+      <p>No files uploaded yet.</p>
+    <?php endif; ?>
 
-  <!-- News Item 1 -->
-  <div class="news-item">
-    <h3>New Features Coming Soon!</h3>
-    <p>We’re excited to announce some new features that will be added soon. Stay tuned for more updates!</p>
-    <a href="news/news1.html" class="read-more">Read More</a>
-  </div>
+    <!-- Footer with Contact Info -->
+    <div class="footer">
+        <p>For support or inquiries, contact us via:</p>
+        <p><a href="https://t.me/Reho_Tech" target="_blank">Telegram: @Reho_Tech</a></p>
+        <p>Visit our website: <a href="https://www.rehotech.com" target="_blank">Reho Tech</a></p>
+    </div>
 
-  <!-- News Item 2 -->
-  <div class="news-item">
-    <h3>Reho Tech Now Offers 24/7 Support!</h3>
-    <p>We are now available to assist you anytime with our 24/7 tech support service. Get help whenever you need it!</p>
-    <a href="news/news2.html" class="read-more">Read More</a>
-  </div>
-  
-  <!-- Tutorial Item 1 -->
-  <div class="tutorial-item">
-    <h3>How to Get Started with Reho Tech</h3>
-    <p>New to Reho Tech? This tutorial will guide you through the basics of setting up your account and using our services.</p>
-    <a href="tutorials/tutorial1.html" class="read-more">Read More</a>
-  </div>
+</div>
 
-  <!-- Tutorial Item 2 -->
-  <div class="tutorial-item">
-    <h3>Advanced Features of Reho Tech</h3>
-    <p>Discover some advanced features that will enhance your experience with Reho Tech and help you get the most out of our platform.</p>
-    <a href="tutorials/tutorial2.html" class="read-more">Read More</a>
-  </div>
-  
-  <!-- Add more news/tutorials here -->
-</section>
-
+</body>
+</html>
