@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Reho Tech - Professional Tech Support</title>
   <style>
     body {
@@ -11,6 +11,7 @@
       padding: 0;
       background: #f9f9f9;
       color: #333;
+      overflow-x: hidden; /* Prevent horizontal scrolling */
     }
     header {
       background: #0077cc;
@@ -24,6 +25,7 @@
       display: flex;
       justify-content: center;
       gap: 20px; /* Adds space between tabs */
+      flex-wrap: wrap; /* Ensure tabs wrap for small screens */
     }
     nav a {
       color: white;
@@ -61,6 +63,7 @@
       padding: 40px;
       text-align: center;
       display: none; /* Hide all sections by default */
+      margin: 0 15px;
     }
     section.active {
       display: block; /* Show the active section */
@@ -101,6 +104,23 @@
 
     .read-more:hover {
       text-decoration: underline;
+    }
+
+    /* Add media query for better mobile responsiveness */
+    @media (max-width: 768px) {
+      header {
+        padding: 15px;
+      }
+      nav {
+        gap: 10px;
+        padding: 10px 0;
+      }
+      nav a {
+        padding: 10px 15px;
+      }
+      section {
+        padding: 20px;
+      }
     }
   </style>
 </head>
