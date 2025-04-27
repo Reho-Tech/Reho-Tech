@@ -31,9 +31,13 @@
             margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
+            cursor: pointer;
         }
 
-        /* Style for tabs */
+        nav a.active {
+            color: #ff0;
+        }
+
         .tabs {
             display: flex;
             justify-content: center;
@@ -92,39 +96,56 @@
     <p>Fast, Reliable, and Professional Tech Support</p>
 </header>
 
+<!-- Navigation bar with clickable links -->
 <nav>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
+    <a href="javascript:void(0);" onclick="showTab('about')" id="nav-about">About</a>
+    <a href="javascript:void(0);" onclick="showTab('services')" id="nav-services">Services</a>
+    <a href="javascript:void(0);" onclick="showTab('contact')" id="nav-contact">Contact</a>
+    <a href="javascript:void(0);" onclick="showTab('home')" id="nav-home">Home</a>
+    <a href="javascript:void(0);" onclick="showTab('news')" id="nav-news">News</a>
+    <a href="javascript:void(0);" onclick="showTab('tutorials')" id="nav-tutorials">Tutorials</a>
+    <a href="javascript:void(0);" onclick="showTab('files')" id="nav-files">Files</a>
 </nav>
 
-<!-- Tabs for Home, News, Tutorials, and Files -->
-<div class="tabs">
-    <div class="tab active" onclick="showTab('home')">Home</div>
-    <div class="tab" onclick="showTab('news')">News</div>
-    <div class="tab" onclick="showTab('tutorials')">Tutorials</div>
-    <div class="tab" onclick="showTab('files')">Files</div>
-</div>
-
-<!-- Content for Tabs -->
-<div class="tab-content home active-tab" id="home">
+<!-- Content for each section -->
+<div class="tab-content" id="home">
     <h2>Welcome to Reho Tech!</h2>
     <p>Explore our services, tutorials, and the latest tech news.</p>
 </div>
 
-<div class="tab-content news" id="news">
-    <h2>Latest News</h2>
-    <h3><strong>Baga Gammaddan</strong></h3>
-    <p>Reho Tech bifa haaraatiin hojii jalqabee jira amma salphaatti website keenya seenuudhaan Oduu Technology
-        garaagaraa fi Shaakallii Viidiyoodhaan Kophaa’e seentanii dubbisuu dandeessu. Galatoomaa.</p>
+<div class="tab-content" id="about">
+    <h2>About Us</h2>
+    <p>At Reho Tech, we are passionate about providing professional and fast tech support. Whether you need help with your devices, software, websites, or online business, we're here to assist you!</p>
 </div>
 
-<div class="tab-content tutorials" id="tutorials">
+<div class="tab-content" id="services">
+    <h2>Our Services</h2>
+    <ul style="list-style: none; padding: 0;">
+        <li>• Software Installation and Support</li>
+        <li>• Website Help and Maintenance</li>
+        <li>• Digital Marketing Support</li>
+        <li>• Computer Troubleshooting</li>
+    </ul>
+</div>
+
+<div class="tab-content" id="contact">
+    <h2>Contact Us</h2>
+    <p>Have questions? Need help? Message us on Telegram:</p>
+    <p><strong><a href="https://t.me/Reho_Tech" target="_blank">@Reho_Tech</a></strong></p>
+</div>
+
+<div class="tab-content" id="news">
+    <h2>Latest News</h2>
+    <h3><strong>Baga Gammaddan</strong></h3>
+    <p>Reho Tech bifa haaraatiin hojii jalqabee jira amma salphaatti website keenya seenuudhaan Oduu Technology garaagaraa fi Shaakallii Viidiyoodhaan Kophaa’e seentanii dubbisuu dandeessu. Galatoomaa.</p>
+</div>
+
+<div class="tab-content" id="tutorials">
     <h2>Useful Tutorials</h2>
     <p>Here you can find helpful tutorials on various technology-related topics. Stay tuned for updates!</p>
 </div>
 
-<div class="tab-content files" id="files">
+<div class="tab-content" id="files">
     <h2>Downloadable Files</h2>
     <p>Click below to download useful tech files.</p>
     <button onclick="window.location.href='https://example.com/download-link'">Download File 1</button>
@@ -140,21 +161,20 @@
         // Hide all content
         const tabContents = document.querySelectorAll('.tab-content');
         tabContents.forEach(function (tabContent) {
-            tabContent.classList.remove('active-tab');
+            tabContent.style.display = 'none';
         });
 
-        // Remove active class from all tabs
-        const tabs = document.querySelectorAll('.tab');
-        tabs.forEach(function (tab) {
-            tab.classList.remove('active');
+        // Set all links to inactive
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(function (link) {
+            link.classList.remove('active');
         });
 
-        // Show the selected tab
-        document.getElementById(tabName).classList.add('active-tab');
+        // Show the selected tab content
+        document.getElementById(tabName).style.display = 'block';
 
-        // Highlight the active tab
-        const activeTab = document.querySelector('.tab.' + tabName);
-        activeTab.classList.add('active');
+        // Set the clicked link as active
+        document.getElementById('nav-' + tabName).classList.add('active');
     }
 
     // Show the home tab by default when the page loads
