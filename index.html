@@ -19,7 +19,6 @@
       text-align: center;
     }
     nav {
-      background: #005fa3;
       padding: 10px;
       text-align: center;
     }
@@ -28,11 +27,29 @@
       margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
+      padding: 10px;
+      border-radius: 5px;
     }
-    nav a#news, nav a#files {
-      color: #ffcc00; /* Differentiated color for News & Files */
+    nav a#home {
+      background: #ffcc00; /* Home Tab Color */
+    }
+    nav a#about {
+      background: #008080; /* About Tab Color */
+    }
+    nav a#services {
+      background: #32cd32; /* Services Tab Color */
+    }
+    nav a#news {
+      background: #ff4500; /* News Tab Color */
+    }
+    nav a#files {
+      background: #6a5acd; /* Files Tab Color */
+    }
+    nav a#contact {
+      background: #ff6347; /* Contact Tab Color */
     }
     nav a:hover {
+      opacity: 0.8;
       text-decoration: underline;
     }
     section {
@@ -86,12 +103,19 @@
 </header>
 
 <nav>
-  <a href="#about">About</a>
-  <a href="#services">Services</a>
+  <a href="#home" id="home">Home</a> <!-- Home Menu -->
+  <a href="#about" id="about">About</a>
+  <a href="#services" id="services">Services</a>
   <a href="#news" id="news">News & Tutorials</a>
-  <a href="#files" id="files">Files</a> <!-- Files menu item added -->
-  <a href="#contact">Contact</a>
+  <a href="#files" id="files">Files</a>
+  <a href="#contact" id="contact">Contact</a>
 </nav>
+
+<section id="home">
+  <h2>Welcome to Reho Tech</h2>
+  <p>Explore our services, news, and resources all in one place.</p>
+  <p><a href="#about">About Us</a> | <a href="#services">Our Services</a> | <a href="#news">Latest News</a> | <a href="#files">Download Files</a> | <a href="#contact">Contact Us</a></p>
+</section>
 
 <section id="about">
   <h2>About Us</h2>
@@ -133,7 +157,6 @@
 
 <section id="files">
   <h2>Files to Download</h2>
-  <!-- Add downloadable files here -->
   <ul style="list-style: none; padding: 0;">
     <li><a href="files/example-file.zip" download>Example File 1</a></li>
     <li><a href="files/example-file2.zip" download>Example File 2</a></li>
