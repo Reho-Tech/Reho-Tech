@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reho Tech - Professional Tech Support</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,49 +28,52 @@
         }
 
         nav a {
+            display: inline-block;
             color: white;
-            margin: 0 15px;
+            margin: 5px 15px;
             text-decoration: none;
             font-weight: bold;
             cursor: pointer;
         }
 
         nav a.active {
-            color: #ff0;
-        }
-
-        .tabs {
-            display: flex;
-            justify-content: center;
-            background-color: #333;
-        }
-
-        .tab {
-            flex: 1;
-            padding: 10px;
-            text-align: center;
-            background-color: #444;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .tab:hover {
-            background-color: #555;
+            color: yellow;
         }
 
         .tab-content {
             display: none;
-            padding: 20px;
+            padding: 30px 20px;
             text-align: center;
+            min-height: 250px;
         }
 
-        .active-tab {
-            display: block;
+        .tab-content h2 {
+            color: #0077cc;
         }
 
-        .active {
-            background-color: #0077cc;
+        .tab-content ul {
+            list-style: none;
+            padding: 0;
+            line-height: 2;
+        }
+
+        .tab-content a {
+            color: #0077cc;
+            font-weight: bold;
+        }
+
+        button {
+            background: #0077cc;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #005fa3;
         }
 
         footer {
@@ -80,110 +84,180 @@
             margin-top: 20px;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .tabs {
-                flex-direction: column;
+            nav a {
+                display: block;
+                margin: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Reho Tech</h1>
+        <p>Fast, Reliable, and Professional Tech Support</p>
+    </header>
+
+    <nav>
+        <a href="#" onclick="showTab('home'); return false;" id="nav-home">Home</a>
+        <a href="#" onclick="showTab('about'); return false;" id="nav-about">About</a>
+        <a href="#" onclick="showTab('services'); return false;" id="nav-services">Services</a>
+        <a href="#" onclick="showTab('contact'); return false;" id="nav-contact">Contact</a>
+        <a href="#" onclick="showTab('news'); return false;" id="nav-news">News</a>
+        <a href="#" onclick="showTab('tutorials'); return false;" id="nav-tutorials">Tutorials</a>
+        <a href="#" onclick="showTab('files'); return false;" id="nav-files">Files</a>
+    </nav>
+
+    <main>
+        <section class="tab-content" id="home">
+            <h2>Welcome to Reho Tech!</h2>
+            <p>Explore our services, tutorials, and the latest tech news.</p>
+        </section>
+
+        <section class="tab-content" id="about">
+            <h2>About Us</h2>
+            <p>
+                At Reho Tech, we are passionate about providing professional
+                and fast tech support. Whether you need help with your devices,
+                software, websites, or online business, we are here to assist you!
+            </p>
+        </section>
+
+        <section class="tab-content" id="services">
+            <h2>Our Services</h2>
+
+            <ul>
+                <li>Software Installation and Support</li>
+                <li>Website Help and Maintenance</li>
+                <li>Digital Marketing Support</li>
+                <li>Computer Troubleshooting</li>
+            </ul>
+        </section>
+
+        <section class="tab-content" id="contact">
+            <h2>Contact Us</h2>
+            <p>Have questions? Need help? Message us on Telegram:</p>
+
+            <p>
+                <strong>
+                    <a href="https://t.me/Reho_Tech" target="_blank">
+                        @Reho_Tech
+                    </a>
+                </strong>
+            </p>
+        </section>
+
+        <section class="tab-content" id="news">
+            <h2>Latest News</h2>
+            <h3>Baga Gammaddan!</h3>
+
+            <p>
+                Reho Tech bifa haaraatiin hojii jalqabee jira.
+                Amma salphaatti website keenya seenuudhaan oduuwwan
+                teeknooloojii garaagaraa fi shaakallii viidiyoo qophaa’an
+                dubbisuu fi ilaalu dandeessu. Galatoomaa.
+            </p>
+        </section>
+
+        <section class="tab-content" id="tutorials">
+            <h2>Useful Tutorials</h2>
+            <p>
+                Here you can find helpful tutorials on various
+                technology-related topics. Stay tuned for updates!
+            </p>
+        </section>
+
+        <section class="tab-content" id="files">
+            <h2>Downloadable Files</h2>
+            <p>Click below to download useful tech files.</p>
+
+            <a href="#" download>
+                <button type="button">Download File 1</button>
+            </a>
+
+            <a href="#" download>
+                <button type="button">Download File 2</button>
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Reho Tech. All rights reserved.
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            const tabContents = document.querySelectorAll(".tab-content");
+
+            tabContents.forEach(function (tabContent) {
+                tabContent.style.display = "none";
+            });
+
+            const navLinks = document.querySelectorAll("nav a");
+
+            navLinks.forEach(function (link) {
+                link.classList.remove("active");
+            });
+
+            const selectedTab = document.getElementById(tabName);
+            const selectedLink = document.getElementById("nav-" + tabName);
+
+            if (selectedTab && selectedLink) {
+                selectedTab.style.display = "block";
+                selectedLink.classList.add("active");
             }
         }
 
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>Reho Tech</h1>
-    <p>Fast, Reliable, and Professional Tech Support</p>
-</header>
-
-<!-- Navigation bar with clickable links -->
-<nav>
-    <a href="javascript:void(0);" onclick="showTab('about')" id="nav-about">About</a>
-    <a href="javascript:void(0);" onclick="showTab('services')" id="nav-services">Services</a>
-    <a href="javascript:void(0);" onclick="showTab('contact')" id="nav-contact">Contact</a>
-    <a href="javascript:void(0);" onclick="showTab('home')" id="nav-home">Home</a>
-    <a href="javascript:void(0);" onclick="showTab('news')" id="nav-news">News</a>
-    <a href="javascript:void(0);" onclick="showTab('tutorials')" id="nav-tutorials">Tutorials</a>
-    <a href="javascript:void(0);" onclick="showTab('files')" id="nav-files">Files</a>
-</nav>
-
-<!-- Content for each section -->
-<div class="tab-content" id="home">
-    <h2>Welcome to Reho Tech!</h2>
-    <p>Explore our services, tutorials, and the latest tech news.</p>
-</div>
-
-<div class="tab-content" id="about">
-    <h2>About Us</h2>
-    <p>At Reho Tech, we are passionate about providing professional and fast tech support. Whether you need help with your devices, software, websites, or online business, we're here to assist you!</p>
-</div>
-
-<div class="tab-content" id="services">
-    <h2>Our Services</h2>
-    <ul style="list-style: none; padding: 0;">
-        <li>• Software Installation and Support</li>
-        <li>• Website Help and Maintenance</li>
-        <li>• Digital Marketing Support</li>
-        <li>• Computer Troubleshooting</li>
-    </ul>
-</div>
-
-<div class="tab-content" id="contact">
-    <h2>Contact Us</h2>
-    <p>Have questions? Need help? Message us on Telegram:</p>
-    <p><strong><a href="https://t.me/Reho_Tech" target="_blank">@Reho_Tech</a></strong></p>
-</div>
-
-<div class="tab-content" id="news">
-    <h2>Latest News</h2>
-    <h3><strong>Baga Gammaddan</strong></h3>
-    <p>Reho Tech bifa haaraatiin hojii jalqabee jira amma salphaatti website keenya seenuudhaan Oduu Technology garaagaraa fi Shaakallii Viidiyoodhaan Kophaa’e seentanii dubbisuu dandeessu. Galatoomaa.</p>
-</div>
-
-<div class="tab-content" id="tutorials">
-    <h2>Useful Tutorials</h2>
-    <p>Here you can find helpful tutorials on various technology-related topics. Stay tuned for updates!</p>
-</div>
-
-<div class="tab-content" id="files">
-    <h2>Downloadable Files</h2>
-    <p>Click below to download useful tech files.</p>
-    <button onclick="window.location.href='https://example.com/download-link'">Download File 1</button>
-    <button onclick="window.location.href='https://example.com/download-link'">Download File 2</button>
-</div>
-
-<footer>
-    &copy; 2025 Reho Tech. All rights reserved.
-</footer>
-
-<script>
-    function showTab(tabName) {
-        // Hide all content
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabContents.forEach(function (tabContent) {
-            tabContent.style.display = 'none';
+        document.addEventListener("DOMContentLoaded", function () {
+            showTab("home");
         });
+    </script>
 
-        // Set all links to inactive
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(function (link) {
-            link.classList.remove('active');
-        });
-
-        // Show the selected tab content
-        document.getElementById(tabName).style.display = 'block';
-
-        // Set the clicked link as active
-        document.getElementById('nav-' + tabName).classList.add('active');
-    }
-
-    // Show the home tab by default when the page loads
-    document.addEventListener('DOMContentLoaded', function () {
-        showTab('home');
-    });
+    <!-- Koodii Chatbase yoo barbaadde qofa itti dabali -->
     <script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="VqZRFIvgoCxQupy-IiH9T";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-</script>
+        (function () {
+            if (
+                !window.chatbase ||
+                window.chatbase("getState") !== "initialized"
+            ) {
+                window.chatbase = (...arguments) => {
+                    if (!window.chatbase.q) {
+                        window.chatbase.q = [];
+                    }
+
+                    window.chatbase.q.push(arguments);
+                };
+
+                window.chatbase = new Proxy(window.chatbase, {
+                    get(target, prop) {
+                        if (prop === "q") {
+                            return target.q;
+                        }
+
+                        return (...args) => target(prop, ...args);
+                    }
+                });
+            }
+
+            const onLoad = function () {
+                const script = document.createElement("script");
+
+                script.src = "https://www.chatbase.co/embed.min.js";
+                script.id = "VqZRFIvgoCxQupy-IiH9T";
+                script.domain = "www.chatbase.co";
+
+                document.body.appendChild(script);
+            };
+
+            if (document.readyState === "complete") {
+                onLoad();
+            } else {
+                window.addEventListener("load", onLoad);
+            }
+        })();
+    </script>
 
 </body>
 </html>
